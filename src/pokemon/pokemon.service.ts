@@ -1,19 +1,43 @@
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, InternalServerErrorException, NotFoundException } from '@nestjs/common';
 import { CreatePokemonDto } from './dto/create-pokemon.dto';
 import { UpdatePokemonDto } from './dto/update-pokemon.dto';
+import { isValidObjectId, Model } from 'mongoose';
+import { Pokemon, PokemonSchema } from './entities/pokemon.entity';
+import { InjectModel, IsObjectIdPipe } from '@nestjs/mongoose';
 
 @Injectable()
 export class PokemonService {
-  create(createPokemonDto: CreatePokemonDto) {
-    return createPokemonDto;
+  constructor(@InjectModel(Pokemon.name) private readonly pokemonModel: Model<Pokemon>) {
   }
 
-  findAll() {
-    return `This action returns all pokemon`;
+  async create(createPokemonDto: CreatePokemonDto) {
+    createPokemonDto.name = createPokemonDto.name.toLocaleLowerCase();
+    try {
+      const pokemon = await this.pokemonModel.create(createPokemonDto);
+      return pokemon;
+
+    } catch (error) {
+      this.errorHandler(error)
+    }
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} pokemon`;
+  async findAll() {
+    return await this.pokemonModel.find();
+  }
+
+  async findOne(term: string) {
+  let pokemon: Pokemon | null = null;
+    if (!isNaN(+term))
+      pokemon = await this.pokemonModel.findOne({ no: term });
+    if (isValidObjectId(term))
+      pokemon = await this.pokemonModel.findById(term)
+
+    if (!pokemon) 
+      pokemon = await this.pokemonModel.findOne({ name: term });
+
+    if (!pokemon) 
+      throw new NotFoundException(`Pokemon with id, name or no ${term} not found`);
+    return pokemon;
   }
 
   update(id: number, updatePokemonDto: UpdatePokemonDto) {
@@ -22,5 +46,15 @@ export class PokemonService {
 
   remove(id: number) {
     return `This action removes a #${id} pokemon`;
+  }
+  private errorHandler(err) {
+    switch (err.code) {
+      case 11000:
+        throw new BadRequestException(`El pokemon con nombre ${JSON.stringify(err.keyValue)} ya existe`);
+      default:
+        throw new InternalServerErrorException(
+          'Error inesperado - revisar logs del servidor',
+        );
+    }
   }
 }
