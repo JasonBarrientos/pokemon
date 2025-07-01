@@ -1,5 +1,5 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://png.pngtree.com/png-clipart/20240604/original/pngtree-the-face-of-a-jason-mask-vector-picture-image_15484147.png" width="120" alt="Nest Logo" /></a>
 </p>
 
 ## Description
@@ -31,6 +31,10 @@ $ npm run start
 # watch mode
 $ npm run start:dev
 
+```
+## Reconstruir la base ded atos con la semilla
+```
+http://localhost:3000/api/seed
 ```
 
 ## Stack Usado
