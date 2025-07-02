@@ -20,16 +20,15 @@ App de pokemon basado en pokeapi
 
 # levantar base de datos
  docker-compose up -d
-
 ```
 ## Compile and run the project
 
 ```bash
 # development
-$ npm run start
+ npm run start
 
 # watch mode
-$ npm run start:dev
+ npm run start:dev
 
 ```
 ## Reconstruir la base ded atos con la semilla
