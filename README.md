@@ -6,13 +6,13 @@
 
 App de pokemon basado en pokeapi
 
-## Project setup
+1. Instalar dependencias
 
 ```bash
  npm install
 ```
 
-## Run base
+2. Run base
 
 ```bash
 # instalar cli
@@ -21,7 +21,7 @@ App de pokemon basado en pokeapi
 # levantar base de datos
  docker-compose up -d
 ```
-## Compile and run the project
+3. Compile and run the project
 
 ```bash
 # development
@@ -31,7 +31,8 @@ App de pokemon basado en pokeapi
  npm run start:dev
 
 ```
-## Reconstruir la base ded atos con la semilla
+4.  Clonar el archivo __.env.template__ y renombrar la copia a __.env__
+ 5. Reconstruir la base ded atos con la semilla
 ```
 http://localhost:3000/api/seed
 ```
