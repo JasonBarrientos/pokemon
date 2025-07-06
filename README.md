@@ -1,18 +1,19 @@
 <p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://png.pngtree.com/png-clipart/20240604/original/pngtree-the-face-of-a-jason-mask-vector-picture-image_15484147.png" width="120" alt="Nest Logo" /></a>
+  <a href="http://nestjs.com/" target="blank"><img src="https://png.pngtree.com/png-clipart/20240604/original/pngtree-the-face-of-a-jason-mask-vector-picture-image_15484147.png" width="200" alt="Nest Logo" /></a>
 </p>
 
-## Description
+## Descripcion
 
 App de pokemon basado en pokeapi
 
+## Pasos
 1. Instalar dependencias
 
 ```bash
  npm install
 ```
 
-2. Run base
+2. Basicos
 
 ```bash
 # instalar cli
