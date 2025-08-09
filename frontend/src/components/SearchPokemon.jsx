@@ -9,6 +9,7 @@ export const SearchPokemon = ({onChangeInput}) => {
     const onSubmitInput=(event)=>{
         event.preventDefault();
         if (inputValue.trim().length<=0) return;
+       
         onChangeInput(inputValue);
         setInputValue('')
     }
