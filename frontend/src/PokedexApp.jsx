@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { SearchPokemon } from './components/SearchPokemon'
 import { PokemonGrid } from './components/PokemonGrid'
-import { getInitPokemons } from './utils/pokemons'
+import { getInitPokemons, getPokemon } from './utils/pokemons'
 
 export const PokedexApp = () => {
         const [pokemons, setPokemons] = useState([])
@@ -15,9 +15,10 @@ export const PokedexApp = () => {
         }, [])
         
 
-        const onChangeInput=(value)=>{
+        const onChangeInput=async (value)=>{
             if (pokemons.includes(value)) return;
-           setPokemons((arr)=>[value,...arr]);
+            let pokemon= await getPokemon(value)
+           setPokemons([pokemon]);
         }
     return (
     <>
